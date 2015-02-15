@@ -1,8 +1,8 @@
-﻿namespace Epam.NetMentoring.CustomList.CustomNodeClass
+﻿namespace Epam.NetMentoring.CustomList.LinkedNodeClass
 {
-    class CustListNode
+    internal class Node
     {
-        public object Content {get; set;}
-        public CustListNode Next { get; set; }
+        public object Content { get; set; }
+        public Node Next { get; set; }
     }
 }
