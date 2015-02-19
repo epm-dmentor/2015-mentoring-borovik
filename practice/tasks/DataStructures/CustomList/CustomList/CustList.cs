@@ -2,7 +2,7 @@
 
 namespace Epam.NetMentoring.CustomList.LinkedListClass
 {
-    internal class LinkedList
+    public class LinkedList
     {
         private int size;
         private Node firstElement;
@@ -45,99 +45,103 @@ namespace Epam.NetMentoring.CustomList.LinkedListClass
 
         public bool InsertAt(int index, object item)
         {
-            var temp = firstElement;
-            if (index > 0 && index <= size - 1)
+            bool result = false;
+
+            if (index > 0 && index < size)
             {
-                for (int q = 0; q <= size - 1; q++)
+                var temp = firstElement;
+                for (int q = 0; q < index - 1; q++)
                 {
-                    if (q == index - 1)
-                    {
-                        temp.Next = new Node { Content = item, Next = temp.Next };
-                        size++;
-                        return true;
-                    }
                     temp = temp.Next;
                 }
-
+                temp.Next = new Node { Content = item, Next = temp.Next };
+                size++;
+                result = true;
             }
+
             else if (index == 0)
             {
-                temp = new Node { Content = item, Next = temp };
+                firstElement = new Node { Content = item, Next = firstElement };
                 size++;
-                return true;
+                result = true;
             }
 
-            return false;
+            return result;
         }
 
         public bool RemoveAt(int index)
         {
-            if (index > 0 && index <= size - 1)
+            bool result = false;
+            if (index > 0 && index < size)
             {
 
                 Node current = firstElement;
                 Node previous = new Node();
-                for (int q = 0; q <= size - 1; q++)
+                for (int q = 0; q < index; q++)
                 {
-                    if (q == index)
-                    {
-                        previous.Next = current.Next;
-                        size--;
-                        return true;
-                    }
+
                     previous = current;
                     current = current.Next;
                 }
+                previous.Next = current.Next;
+                size--;
+                result = true;
+
             }
             else if (index == 0)
             {
                 firstElement = firstElement.Next;
                 size--;
+                result = true;
             }
 
-            return false;
+            return result;
         }
 
         public bool Remove(object obj)
         {
-
+            bool result = false;
             if (obj == firstElement.Content)
             {
                 firstElement = firstElement.Next;
                 size--;
-                return true;
+                result = true;
             }
 
-            Node current = firstElement.Next;
-            Node previous = firstElement;
-
-            for (int q = 1; q <= size - 1; q++)
+            else
             {
-                if ((current.Content != null && current.Content.Equals(obj)) || (current.Content == null && obj == null))
+                Node current = firstElement.Next;
+                Node previous = firstElement;
+                for (int q = 1; q < size; q++)
                 {
-                    previous.Next = current.Next;
-                    size--;
-                    return true;
-                }
+                    if ((current.Content != null && current.Content.Equals(obj)) || (current.Content == null && obj == null))
+                    {
+                        previous.Next = current.Next;
+                        size--;
+                        result = true;
+                        break;
+                    }
 
-                previous = current;
-                current = current.Next;
+                    previous = current;
+                    current = current.Next;
+                }
             }
-            return false;
+            return result;
         }
 
         public object ElementAt(int index)
         {
-            Node temp = firstElement;
-            for (int q = 0; q <= size - 1; q++)
+            object result = null;
+            if (index >= 0 && index < size)
             {
-                if (q == index)
+                Node temp = firstElement;
+                for (int q = 0; q < index; q++)
                 {
-                    return temp.Content;
+                    temp = temp.Next;
                 }
-                temp = temp.Next;
+                result = temp.Content;
             }
-            return null;
+            return result;
         }
 
     }
