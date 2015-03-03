@@ -8,13 +8,13 @@ namespace Epam.NetMentoring.HashTable.HashTableClass
     {
         private WordDefinition[] items;
 
-        public int tableSize { get; set; }
+        public int Size { get; set; }
 
         public string this[WordEntity key]
         {
             get
             {
-                return ItemByKey(key);
+                return GetItemByKey(key);
             }
             set
             {
@@ -24,8 +24,8 @@ namespace Epam.NetMentoring.HashTable.HashTableClass
 
         public MyHashTable()
         {
-            tableSize = 25;
-            items = new WordDefinition[tableSize];
+            Size = 25;
+            items = new WordDefinition[Size];
         }
 
         public void AddItem(WordEntity key, string definition)
@@ -51,12 +51,12 @@ namespace Epam.NetMentoring.HashTable.HashTableClass
             }
         }
 
-        public bool Exists(string definition)
+        public bool IfExist(string definition)
         {
             bool result = false;
             if (definition != null)
             {
-                for (int q = 0; q < tableSize; q++)
+                for (int q = 0; q < Size; q++)
                 {
                     if (items[q] != null)
                     {
@@ -77,7 +77,7 @@ namespace Epam.NetMentoring.HashTable.HashTableClass
             return result;
         }
 
-        private string ItemByKey(WordEntity key)
+        private string GetItemByKey(WordEntity key)
         {
             string result = null;
             if (key != null)
@@ -146,7 +146,7 @@ namespace Epam.NetMentoring.HashTable.HashTableClass
 
         private int Hash(WordEntity key)
         {
-            return Math.Abs(((17 * key.GetHashCode() + 47) % 13249) % tableSize);
+            return Math.Abs(((17 * key.GetHashCode() + 47) % 13249) % Size);
         }
     }
 }

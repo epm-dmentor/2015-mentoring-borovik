@@ -9,7 +9,7 @@ namespace Epam.NetMentoring.HashTable
     {
         static void Main(string[] args)
         {
-            var hash = new MyHashTable();
+            var hash = new MyHashTable().;
             var word = new WordEntity { Word = "Soxx", Type = new WordType { Description = "Szza" } };
             var changed = new WordEntity { Word = "Essaaa", Type = new WordType { Description = "qwertyu" } };
             hash.AddItem(word, "Just a rubbish string");
@@ -17,8 +17,8 @@ namespace Epam.NetMentoring.HashTable
             hash.AddItem(changed, "QWERTY");
             hash.AddItem(new WordEntity { Word = "IDDQD", Type = new WordType { Description = "Doom" } }, "Immortality code in DOOM PC game");
             hash.AddItem(new WordEntity { Word = "IDDQD", Type = new WordType { Description = "Doom" } }, "Immortality code in DOOM PC game");
-            Assert.IsTrue(hash.Exists("QWERTY"));
-            Assert.IsFalse(hash.Exists("Kirill"));
+            Assert.IsTrue(hash.IfExist("QWERTY"));
+            Assert.IsFalse(hash.IfExist("Kirill"));
             Assert.AreEqual(hash[word], "Just a rubbish string");
             Assert.AreNotEqual(hash[word], "hohoho");
             hash[changed] = "Yet another one QWERTY";

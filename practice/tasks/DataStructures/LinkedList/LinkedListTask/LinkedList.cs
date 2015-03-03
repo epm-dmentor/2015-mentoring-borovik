@@ -1,6 +1,6 @@
-﻿using Epam.NetMentoring.CustomList.LinkedNodeClass;
+﻿using Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedList.LinkedListTask.ListNode;
 
-namespace Epam.NetMentoring.CustomList.LinkedListClass
+namespace Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedList.LinkedListTask.LinkedList
 {
     public class LinkedList
     {
@@ -69,7 +69,7 @@ namespace Epam.NetMentoring.CustomList.LinkedListClass
             return result;
         }
 
-        public bool RemoveAt(int index)
+        public bool RemoveFrom(int index)
         {
             bool result = false;
             if (index > 0 && index < size)
@@ -112,16 +112,17 @@ namespace Epam.NetMentoring.CustomList.LinkedListClass
             {
                 Node current = firstElement.Next;
                 Node previous = firstElement;
-                for (int q = 1; q < size; q++)
+                bool found = false;
+                while (current != null && !found)
                 {
-                    if ((current.Content != null && current.Content.Equals(obj)) || (current.Content == null && obj == null))
+                    found = (current.Content == null && obj == null);
+                    if (!found) found = (current.Content != null && current.Content.Equals(obj));
+                    if (found)
                     {
                         previous.Next = current.Next;
                         size--;
                         result = true;
-                        break;
                     }
-
                     previous = current;
                     current = current.Next;
                 }
@@ -129,7 +130,7 @@ namespace Epam.NetMentoring.CustomList.LinkedListClass
             return result;
         }
 
-        public object ElementAt(int index)
+        public object GetElementAt(int index)
         {
             object result = null;
             if (index >= 0 && index < size)
