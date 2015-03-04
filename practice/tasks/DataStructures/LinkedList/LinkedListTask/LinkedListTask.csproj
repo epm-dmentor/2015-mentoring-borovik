@@ -7,8 +7,8 @@
     <ProjectGuid>{BF019B8B-4638-4E3E-92AE-33B35EF39199}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CustomList</RootNamespace>
-    <AssemblyName>CustomList</AssemblyName>
+    <RootNamespace>Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedListTask</RootNamespace>
+    <AssemblyName>LinkedListTask</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -38,11 +38,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LinkedList.cs" />

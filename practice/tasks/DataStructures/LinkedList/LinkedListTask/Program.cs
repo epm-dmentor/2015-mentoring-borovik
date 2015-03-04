@@ -1,13 +1,12 @@
-﻿using Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedList.LinkedListTask.LinkedList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedList.LinkedListTask.Program
+namespace Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedListTask
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            var test = new LinkedList.LinkedList("Some Random Text", 8, '%', 2345, null, 22);
+            var test = new LinkedList("Some Random Text", 8, '%', 2345, null, 22);
             Assert.IsTrue(test.InsertAt(0, 12345));
             Assert.AreEqual(test.GetElementAt(0), 12345);
             Assert.AreEqual(test.Count, 7);

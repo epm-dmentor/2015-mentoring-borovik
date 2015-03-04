@@ -1,68 +1,59 @@
-﻿using Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedList.LinkedListTask.ListNode;
-
-namespace Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedList.LinkedListTask.LinkedList
+﻿namespace Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedListTask
 {
     public class LinkedList
     {
-        private int size;
-        private Node firstElement;
+        private Node _firstElement;
 
-        public int Count
-        {
-            get
-            {
-                return size;
-            }
-        }
         public LinkedList(params object[] args)
         {
-            foreach (object element in args)
+            foreach (var element in args)
             {
                 Add(element);
             }
         }
 
+        public int Count { get; private set; }
+
         public void Add(object item)
         {
-            Node node = new Node { Content = item };
+            var node = new Node {Content = item};
 
-            if (firstElement == null)
+            if (_firstElement == null)
             {
-                firstElement = node;
+                _firstElement = node;
             }
             else
             {
-                Node temp = firstElement;
+                var temp = _firstElement;
                 while (temp.Next != null)
                 {
                     temp = temp.Next;
                 }
                 temp.Next = node;
             }
-            size++;
+            Count++;
         }
-
 
         public bool InsertAt(int index, object item)
         {
-            bool result = false;
+            var result = false;
 
-            if (index > 0 && index < size)
+            if (index > 0 && index < Count)
             {
-                var temp = firstElement;
-                for (int q = 0; q < index - 1; q++)
+                var temp = _firstElement;
+                for (var q = 0; q < index - 1; q++)
                 {
                     temp = temp.Next;
                 }
-                temp.Next = new Node { Content = item, Next = temp.Next };
-                size++;
+                temp.Next = new Node {Content = item, Next = temp.Next};
+                Count++;
                 result = true;
             }
 
             else if (index == 0)
             {
-                firstElement = new Node { Content = item, Next = firstElement };
-                size++;
+                _firstElement = new Node {Content = item, Next = _firstElement};
+                Count++;
                 result = true;
             }
 
@@ -71,27 +62,24 @@ namespace Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedList.LinkedListT
 
         public bool RemoveFrom(int index)
         {
-            bool result = false;
-            if (index > 0 && index < size)
+            var result = false;
+            if (index > 0 && index < Count)
             {
-
-                Node current = firstElement;
-                Node previous = new Node();
-                for (int q = 0; q < index; q++)
+                var current = _firstElement;
+                var previous = new Node();
+                for (var q = 0; q < index; q++)
                 {
-
                     previous = current;
                     current = current.Next;
                 }
                 previous.Next = current.Next;
-                size--;
+                Count--;
                 result = true;
-
             }
             else if (index == 0)
             {
-                firstElement = firstElement.Next;
-                size--;
+                _firstElement = _firstElement.Next;
+                Count--;
                 result = true;
             }
 
@@ -100,19 +88,19 @@ namespace Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedList.LinkedListT
 
         public bool Remove(object obj)
         {
-            bool result = false;
-            if (obj == firstElement.Content)
+            var result = false;
+            if (obj == _firstElement.Content)
             {
-                firstElement = firstElement.Next;
-                size--;
+                _firstElement = _firstElement.Next;
+                Count--;
                 result = true;
             }
 
             else
             {
-                Node current = firstElement.Next;
-                Node previous = firstElement;
-                bool found = false;
+                var current = _firstElement.Next;
+                var previous = _firstElement;
+                var found = false;
                 while (current != null && !found)
                 {
                     found = (current.Content == null && obj == null);
@@ -120,7 +108,7 @@ namespace Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedList.LinkedListT
                     if (found)
                     {
                         previous.Next = current.Next;
-                        size--;
+                        Count--;
                         result = true;
                     }
                     previous = current;
@@ -133,10 +121,10 @@ namespace Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedList.LinkedListT
         public object GetElementAt(int index)
         {
             object result = null;
-            if (index >= 0 && index < size)
+            if (index >= 0 && index < Count)
             {
-                Node temp = firstElement;
-                for (int q = 0; q < index; q++)
+                var temp = _firstElement;
+                for (var q = 0; q < index; q++)
                 {
                     temp = temp.Next;
                 }
@@ -144,6 +132,5 @@ namespace Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedList.LinkedListT
             }
             return result;
         }
-
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedList.LinkedListTask.ListNode
+﻿namespace Epam.NetMentoring.Practice.Tasks.DataStructures.LinkedListTask
 {
     public class Node
     {
